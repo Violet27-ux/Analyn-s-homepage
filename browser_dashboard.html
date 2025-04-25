@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser Environment Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 15px;
+    }
+    header {
+      background-color: violet;
+      color: #222;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    section {
+      background-color: white;
+      color: #222;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ma.Analyn G. Cantor</h1>
+    <p>Female</p>
+    <p>Del Carmen, Lagonoy Camarines Sur</p>
+    <p>BSIT 2B</p>
+    <p>Partido State University</p>
+    <p>Second Semester, S/Y-2024-2025</p>
+    <p>PF2-Event Driven Programming</p>
+    <p>Instructor: Arjay F. Abio</p>
+  </header>
+<br>
+  <section id="browser-info">
+    <h3>Browser Information</h3>
+    <p id="browser"></p>
+    <p id="platform"></p>
+    <p id="java"></p>
+    <p id="resolution"></p>
+    <p id="availScreen"></p>
+    <p id="colorDepth"></p>
+  </section>
+  <br>
+
+  <section id="page-info">
+    <h3>Page Information</h3>
+    <p>URL: <span id="url"></span></p>
+    <p>Hostname: <span id="hostname"></span></p>
+    <p>Page Title: <span id="pageTitle"></span></p>
+    <button onclick="changeTitle()">Change Page Title</button>
+  </section>
+  <br>
+
+  <section id="navigation">
+    <h3>Navigation Controls</h3>
+    <button onclick="location.reload()">Reload Page</button>
+    <button onclick="location.href='https://www.google.com'">Go to Google</button>
+    <button onclick="history.back()">Back</button>
+    <button onclick="history.forward()">Forward</button>
+  </section>
+  <br>
+
+  <script>
+    // Display browser info using navigator and screen objects
+    document.getElementById('browser').textContent = `Browser: ${navigator.appName} ${navigator.appVersion}`;
+    document.getElementById('platform').textContent = `Platform: ${navigator.platform}`;
+    document.getElementById('java').textContent = `Java Enabled: ${navigator.javaEnabled()}`;
+    document.getElementById('resolution').textContent = `Screen Resolution: ${screen.width}x${screen.height}`;
+    document.getElementById('availScreen').textContent = `Available Screen: ${screen.availWidth}x${screen.availHeight}`;
+    document.getElementById('colorDepth').textContent = `Color Depth: ${screen.colorDepth}`;
+
+    // Display page info using location and document objects
+    document.getElementById('url').textContent = location.href;
+    document.getElementById('hostname').textContent = location.hostname;
+    document.getElementById('pageTitle').textContent = document.title;
+
+    // Function to change the page title
+    function changeTitle() {
+      const newTitle = prompt("Enter new page title:");
+      if (newTitle) {
+        document.title = newTitle;
+        document.getElementById('pageTitle').textContent = newTitle;
+      }
+    }
+
+    // Function to apply background color based on screen width
+    function applyBackgroundColor() {
+      const width = window.innerWidth;
+      if (width < 600) {
+        document.body.style.backgroundColor = 'blue';
+      } else if (width >= 600 && width < 992) {
+        document.body.style.backgroundColor = 'green';
+      } else {
+        document.body.style.backgroundColor = 'orange';
+      }
+    }
+
+    // Initial check and on resize
+    applyBackgroundColor();
+    window.onresize = applyBackgroundColor;
+  </script>
+</body>
+</html>
